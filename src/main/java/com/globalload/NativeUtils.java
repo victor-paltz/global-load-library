@@ -39,14 +39,13 @@ import java.util.logging.Logger;
  * @see <a href="https://github.com/adamheinrich/native-utils">https://github.com/adamheinrich/native-utils</a>
  */
 public class NativeUtils {
+    public static final String NATIVE_FOLDER_PATH_PREFIX = "nativeutils";
     private static final Logger LOGGER = Logger.getLogger(NativeUtils.class.getName());
     /**
      * The minimum length a prefix for a file has to have according to {@link
      * File#createTempFile(String, String)}}.
      */
     private static final int MIN_PREFIX_LENGTH = 3;
-    public static final String NATIVE_FOLDER_PATH_PREFIX = "nativeutils";
-
     /**
      * Temporary directory which will contain the DLLs.
      */
