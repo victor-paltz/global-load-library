@@ -1,14 +1,17 @@
 package com.globalload;
 
+import java.io.IOException;
+
 public class LibraryLoaderJNI {
 
     static {
         try {
             NativeUtils.loadLibraryFromJar("/libnativeload.so");
             System.out.println("Loaded nativeload");
-        } catch (UnsatisfiedLinkError var1) {
+        } catch (UnsatisfiedLinkError | IOException e){
             System.out.println("Couldn't load nativeload");
-            System.out.println(var1.getMessage());
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

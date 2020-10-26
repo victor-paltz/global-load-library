@@ -54,3 +54,7 @@ hs_err_pid*
 *.exe
 *.out
 *.app
+
+.idea
+target/
+*.iml
