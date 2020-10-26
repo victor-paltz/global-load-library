@@ -20,7 +20,7 @@ extern "C"
  * Method:    loadLib
  * Signature: (Ljava/lang/String;)Z
  */
-  JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLib(JNIEnv *, jobject, jstring);
+  JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *, jobject, jstring);
 
 #ifdef __cplusplus
 }

@@ -37,7 +37,7 @@ JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jobje
     std::cout << get_current_dir() << endl;
 }
 
-JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLib(JNIEnv *env, jobject thisObject, jstring path)
+JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *env, jobject thisObject, jstring path)
 {
 
     const char *pathCharPointer = env->GetStringUTFChars(path, NULL);

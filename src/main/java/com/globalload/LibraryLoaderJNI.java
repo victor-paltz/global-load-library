@@ -22,6 +22,6 @@ public class LibraryLoaderJNI {
 
     public native void test();
 
-    public native boolean loadLib(String var1);
+    public native boolean loadLibrary(String var1);
 
 }

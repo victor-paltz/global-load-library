@@ -10,7 +10,7 @@ libnativeload.so: src/main/cpp/com/globalload/com_globalload_LibraryLoaderJNI.o
 build: libnativeload.so
 	$(eval _resources_path = src/main/resources)
 	mkdir -p ${_resources_path}
-	cp $@ ${_resources_path}
+	cp $< ${_resources_path}
 
 clean:
 	rm -f *.o *.so
