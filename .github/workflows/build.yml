@@ -1,0 +1,64 @@
+name: Java CI
+
+on: [push]
+
+jobs:
+
+  build_faiss:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@master
+      with:
+        submodules: true
+
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: victor-paltz
+        password: "${{ secrets.GITHUB_TOKEN }}"
+        registry: docker.pkg.github.com
+        image_name: global-load-library
+        dockerfile: Dockerfile
+
+    # - name: Run the docker image
+    #   uses: ./.github/actions
+
+    # - name: Debugging with tmate
+    #   uses: mxschmitt/action-tmate@v3
+
+    # - run: docker image ls
+
+    - run: docker run -v "/home/runner/work/global-load-library/global-load-library":"/github/workspace" docker.pkg.github.com/victor-paltz/global-load-library/global-load-library
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: global_loader_JNI_and_SO
+        path: build
+    
+
+  build:
+    needs: build_faiss
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Download build
+        uses: actions/download-artifact@v2
+        with:
+          name: global_loader_JNI_and_SO
+          path: build_copy
+      - name: Move
+        run: |
+          rm -rf src/main/java/com/globalload
+          cp -r build_copy/java/com/globalload src/main/java/com/globalload
+          rm -rf src/main/resources
+          cp -r build_copy/resources src/main/resources
+
+    #   - name: Debugging with tmate
+    #     uses: mxschmitt/action-tmate@v3
+
+      - name: Publish package
+        run: mvn -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

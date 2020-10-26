@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.victor-paltz</groupId>
+    <artifactId>native-loader</artifactId>
+    <version>1.0.0</version>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>
+        A magic function that loads .so libraries with the RTLD_GLOBAL flag.
+        It is especially useful when working with JNI libraries dependencies.
+    </description>
+    <url>https://github.com/victor-paltz/global-load-library</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Victor Paltz</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/victor-paltz</organizationUrl>
+        </developer>
+        <developer>
+            <name>Raman Rajarathinam</name>
+            <email>ramanrajarathinam@gmail.com</email>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/RamanRajarathinam</organizationUrl>
+        </developer>
+        <developer>
+            <name>Adam Heinrich</name>
+            <email>adam@adamh.cz</email>
+            <organization>Github</organization>
+            <organizationUrl>https://www.adamh.cz</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://https://github.com/victor-paltz/global-load-library.git</connection>
+        <developerConnection>scm:git:ssh://github.com/victor-paltz/global-load-library.git</developerConnection>
+        <url>https://github.com/victor-paltz/global-load-library</url>
+        <tag>1.0.0</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/victor-paltz/JFaiss-CPU</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${basedir}/src/main/resources/</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
