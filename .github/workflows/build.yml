@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
 
-  build_faiss:
+  build_global_loader:
     runs-on: ubuntu-latest
     steps: 
     - uses: actions/checkout@master
@@ -36,7 +36,7 @@ jobs:
     
 
   build:
-    needs: build_faiss
+    needs: build_global_loader
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
