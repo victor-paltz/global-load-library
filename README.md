@@ -4,13 +4,15 @@ A magic function that loads .so libraries with the RTLD_GLOBAL flag. It is espec
 ## Example:
 
 ``` java
-    import com.globalload;
+import com.globalload;
 
-	public class HelloWorldJNI {
+public class HelloWorldJNI {
  
     static {
-        LibraryLoaderJNI.loadLibrary("my_native_lib_A"); // loaded with RTLD_GLOBAL flag
-        System.loadLibrary("my_native_lib_B");           // not loaded with RTLD_GLOBAL flag
+        // Loaded with RTLD_GLOBAL flag
+        LibraryLoaderJNI.loadLibrary("/path/to/my_native_lib_A");
+        // Not loaded with RTLD_GLOBAL flag
+        System.load("/path/to/my_native_lib_B");
     }
     
     public static void main(String[] args) {
