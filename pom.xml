@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.victor-paltz</groupId>
-    <artifactId>native-loader</artifactId>
+    <artifactId>global-load-library</artifactId>
     <version>1.0.0</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
