@@ -13,14 +13,14 @@ extern "C"
  * Method:    test
  * Signature: ()V
  */
-  JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jobject);
+  JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jclass);
 
   /*
  * Class:     com_globalload_LibraryLoaderJNI
- * Method:    loadLib
+ * Method:    loadLibrary
  * Signature: (Ljava/lang/String;)Z
  */
-  JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *, jobject, jstring);
+  JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *, jclass, jstring);
 
 #ifdef __cplusplus
 }

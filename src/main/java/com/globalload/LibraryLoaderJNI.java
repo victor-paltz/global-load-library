@@ -4,13 +4,15 @@ import java.io.IOException;
 
 public class LibraryLoaderJNI {
 
+    private static final Logger LOGGER = Logger.getLogger(LibraryLoaderJNI.class.getName());
+
     static {
         try {
             NativeUtils.loadLibraryFromJar("/libnativeload.so");
-            System.out.println("Loaded nativeload");
+            LOGGER.info("Loaded nativeload");
         } catch (UnsatisfiedLinkError | IOException e) {
-            System.out.println("Couldn't load nativeload");
-            System.out.println(e.getMessage());
+            LOGGER.warning("Couldn't load nativeload");
+            LOGGER.warning(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -24,6 +26,6 @@ public class LibraryLoaderJNI {
 
     public static native void test();
 
-    public static native boolean loadLibrary(String var1);
+    public static native boolean loadLibrary(String var1) throws UnsatisfiedLinkError;
 
 }

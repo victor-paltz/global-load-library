@@ -29,7 +29,7 @@ std::string get_current_dir()
     return current_working_dir;
 }
 
-JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jobject)
+JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jclass)
 {
 
     std::cout << "Hello from C++ !!" << std::endl;
@@ -37,20 +37,22 @@ JNIEXPORT void JNICALL Java_com_globalload_LibraryLoaderJNI_test(JNIEnv *, jobje
     std::cout << get_current_dir() << endl;
 }
 
-JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *env, jobject thisObject, jstring path)
+JNIEXPORT jboolean JNICALL Java_com_globalload_LibraryLoaderJNI_loadLibrary(JNIEnv *env, jclass thisClass, jstring path)
 {
 
     const char *pathCharPointer = env->GetStringUTFChars(path, NULL);
 
     void *handle;
-
-    //handle = dlopen("libmkl_core.so", RTLD_LAZY | RTLD_GLOBAL);
     handle = dlopen(pathCharPointer, RTLD_LAZY | RTLD_GLOBAL);
 
     if (!handle)
     {
-        fprintf(stderr, "%s\n", dlerror());
-        //exit(EXIT_FAILURE);
+        std::cout << "Failed loading" << pathCharPointer << std::endl;
+        std::cerr << dlerror() << std::endl;
+
+        jclass jcls = env->FindClass("java/lang/UnsatisfiedLinkError");
+        env->ThrowNew(jcls, "Issue when loading the library");
+
         return false;
     }
     else
