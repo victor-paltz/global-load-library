@@ -1,6 +1,7 @@
 package com.globalload;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class LibraryLoaderJNI {
 
